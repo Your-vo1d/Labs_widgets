@@ -11,7 +11,7 @@ Area::Area(QWidget *parent) : QWidget(parent)
     alpha  = 0;
 }
 
-// showEvent вызывается Qt автоматически при первом show() и при любом повторном показе.
+// showEvent вызывается Qt автоматически при первом show() и при любом повторном показе
 // Именно здесь запускаем таймер 
 void Area::showEvent(QShowEvent *)
 {
@@ -42,7 +42,7 @@ void Area::timerEvent(QTimerEvent *event)
     }
 }
 
-// hideEvent симметричен showEvent: виджет скрывается - таймер останавливаем.
+// hideEvent симметричен showEvent: виджет скрывается - таймер останавливаем
 void Area::hideEvent(QHideEvent *)
 {
     killTimer(myTimer);
