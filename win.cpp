@@ -35,12 +35,11 @@ Win::Win(QWidget *parent) : QWidget(parent)
     layout4->addLayout(layout3);
 
     // Нажатие "+1" - edit1 считает одиночные нажатия
-    connect(calcbutton, SIGNAL(clicked(bool)), edit1, SLOT(add_one()));
+    connect(calcbutton, &QPushButton::clicked, edit1, &Counter::add_one);
 
     // Когда edit1 достигает кратного пяти - tick_signal попадает в edit2,
-    // который считает завершённые серии. Объекты не знают друг о друге напрямую -
-    // только через сигнал. Это и есть слабая связность в Qt.
-    connect(edit1, SIGNAL(tick_signal()), edit2, SLOT(add_one()));
+    // который считает завершённые серии.
+    connect(edit1, &Counter::tick_signal, edit2, &Counter::add_one);
 
-    connect(exitbutton, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(exitbutton, &QPushButton::clicked, this, &Win::close);
 }
