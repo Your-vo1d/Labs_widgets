@@ -16,8 +16,12 @@ public:
 
     virtual State validate(QString &str, int &pos) const override
     {
+        Q_UNUSED(pos) // Для проверки корректностистроки в validate необходимо раскомментировать строки ниже
+        // bool ok;
+        // str.toDouble(&ok);
+        // if (str.isEmpty()) return Intermediate;
+        // return ok ? Acceptable : Invalid;
         Q_UNUSED(str)
-        Q_UNUSED(pos)
         return Acceptable;
     }
 };
