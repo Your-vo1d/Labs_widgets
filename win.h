@@ -1,9 +1,8 @@
-#ifndef WIN_H
+﻿#ifndef WIN_H
 #define WIN_H
 
 #include <QtWidgets>
 #include <QTextCodec>
-
 
 // Класс-валидатор нужен НЕ для проверки правильности числа, а для того,
 // чтобы QLineEdit слал сигнал returnPressed() по Enter.
@@ -11,7 +10,6 @@
 class StrValidator : public QValidator
 {
 public:
-
     StrValidator(QObject *parent) : QValidator(parent) {}
 
     virtual State validate(QString &str, int &pos) const override
@@ -19,28 +17,27 @@ public:
         Q_UNUSED(pos) // Для проверки корректностистроки в validate необходимо раскомментировать строки ниже
         // bool ok;
         // str.toDouble(&ok);
-        // if (str.isEmpty()) return Intermediate;
+        // if (str.isEmpty() || str == "-") return Intermediate;
         // return ok ? Acceptable : Invalid;
         Q_UNUSED(str)
         return Acceptable;
     }
 };
 
-
 class Win : public QWidget
 {
-    Q_OBJECT 
+    Q_OBJECT
 
 protected:
-    QTextCodec  *codec;
+    QTextCodec *codec;
 
-    QFrame      *frame;        // рамка вокруг полей - чисто декоративно
-    QLabel      *inputLabel;   // метка "Введите число:"
-    QLineEdit   *inputEdit;    // поле для ввода числа
-    QLabel      *outputLabel;  // метка "Результат:" (скрыта до вычисления)
-    QLineEdit   *outputEdit;   // поле с результатом (скрыто до вычисления)
-    QPushButton *nextButton;   // кнопка "Следующее"
-    QPushButton *exitButton;   // кнопка "Выход"
+    QFrame *frame;           // рамка вокруг полей - чисто декоративно
+    QLabel *inputLabel;      // метка "Введите число:"
+    QLineEdit *inputEdit;    // поле для ввода числа
+    QLabel *outputLabel;     // метка "Результат:" (скрыта до вычисления)
+    QLineEdit *outputEdit;   // поле с результатом (скрыто до вычисления)
+    QPushButton *nextButton; // кнопка "Следующее"
+    QPushButton *exitButton; // кнопка "Выход"
 
 public:
     Win(QWidget *parent = nullptr);
