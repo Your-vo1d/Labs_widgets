@@ -76,7 +76,12 @@ Win::Win(QWidget *parent) : QWidget(parent)
 
     // Левая колонка: рамка с метками и полями один под другим.
     // Layout сам вычислит размеры
-    QVBoxLayout *vLayout1 = new QVBoxLayout(frame);
+    QVBoxLayout *vLayout1 = new (std::nothrow) QVBoxLayout(frame);
+    if (!vLayout1)
+    {
+        setWindowTitle("Ошибка: QVBoxLayout vLayout1");
+        return;
+    }
     vLayout1->addWidget(inputLabel);
     vLayout1->addWidget(inputEdit);
     vLayout1->addWidget(outputLabel);
@@ -84,13 +89,23 @@ Win::Win(QWidget *parent) : QWidget(parent)
     vLayout1->addStretch(); // пустое пространство снизу, чтобы элементы прижались к верху
 
     // Правая колонка: две кнопки
-    QVBoxLayout *vLayout2 = new QVBoxLayout();
+    QVBoxLayout *vLayout2 = new (std::nothrow) QVBoxLayout();
+    if (!vLayout2)
+    {
+        setWindowTitle("Ошибка: QVBoxLayout vLayout2");
+        return;
+    }
     vLayout2->addWidget(nextButton);
     vLayout2->addWidget(exitButton);
     vLayout2->addStretch();
 
     // Горизонтальный layout объединяет рамку и колонку с кнопками
-    QHBoxLayout *hLayout = new QHBoxLayout(this);
+    QHBoxLayout *hLayout = new (std::nothrow) QHBoxLayout(this);
+    if (!hLayout)
+    {
+        setWindowTitle("Ошибка: QHBoxLayout hLayout");
+        return;
+    }
     hLayout->addWidget(frame);
     hLayout->addLayout(vLayout2);
 
